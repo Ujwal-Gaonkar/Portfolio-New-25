@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply text-gray-900 antialiased;
+  }
+}
+
+.container {
+  @apply max-w-7xl mx-auto;
+}
+
+/* Gradient text animation */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.bg-gradient-text {
+  background-size: 200% 200%;
+  animation: gradient 4s ease infinite;
+}
+
+/* Smooth transitions */
+* {
+  @apply transition-all duration-200;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
+}
+
+/* Optional additional button styling if needed */
+.button {
+  @apply py-2 px-4 rounded font-medium;
+}
+
+.button-github {
+  @apply bg-gray-800 text-white hover:bg-gray-700;
+}
+
+.button-demo {
+  @apply bg-blue-500 text-white hover:bg-blue-400;
+}
+
