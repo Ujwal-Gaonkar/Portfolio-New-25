@@ -18,7 +18,7 @@ function App() {
               Ujwal Gaonkar
             </motion.h1>
             <motion.a
-              href="https://drive.google.com/file/d/1w9xEK8W2dlnLNR2GlprwHh-DRPqmEfsf/view?usp=sharing"
+              href="https://drive.google.com/file/d/1I0bHftwVVOrQDW1k9wM5eE6u3pD6rzml/view?usp=sharing"
               download
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
