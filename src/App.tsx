@@ -1,35 +1,36 @@
 import React from 'react';
-import { Github, Linkedin, Mail, ExternalLink, Code2, Database, Globe, Cpu, ChevronRight as ChessKnight, Brain, Download, Instagram, GraduationCap, Code, FileStackIcon, PhoneCall } from 'lucide-react';
+import { Github, Linkedin, Mail, ExternalLink, Code2,Code,FileStackIcon, Database, Globe, Cpu, ChevronRight as ChessKnight, Brain, Download, Instagram, GraduationCap, PhoneCall } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className={`min-h-screen dark bg-gray-900`}>
       {/* Navigation Bar with Resume Download */}
-      <nav className="fixed w-full bg-white/80 backdrop-blur-sm z-50 shadow-sm">
+      <nav className={`fixed w-full bg-gray-900/80 backdrop-blur-sm z-50 shadow-sm`}>
         <div className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <motion.h1 
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="text-xl font-bold text-gray-900"
+              className={`text-xl font-bold text-white`}
             >
               Ujwal Gaonkar
             </motion.h1>
-            <motion.a
+            <div className="flex items-center gap-4">
+              <motion.a
               href="https://drive.google.com/file/d/1I0bHftwVVOrQDW1k9wM5eE6u3pD6rzml/view?usp=sharing"
               download
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+              className={`flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors`}
             >
               <Download size={18} />
               Download Resume
             </motion.a>
           </div>
         </div>
-      </nav>
+      </div>
+    </nav>
 
       {/* Hero Section with Parallax Effect */}
       <header className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 text-white relative overflow-hidden pt-16">
@@ -107,9 +108,10 @@ function App() {
       </header>
 
       {/* About Section with Scroll Animations */}
-      <Section>
-        <h2 className="text-4xl font-bold text-center mb-12">About Me</h2>
-        <div className="max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed">
+      {/* About Section */}
+      <Section className="bg-gray-900">
+        <h2 className="text-4xl font-bold text-center mb-12 text-gray-100">About Me</h2>
+        <div className="max-w-3xl mx-auto text-lg text-gray-300 leading-relaxed">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -122,17 +124,17 @@ function App() {
             applications. Actively solving coding challenges and contributing to open-source projects.
           </motion.p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
-            <AnimatedSkill icon={<Code2 size={32} />} title="Frontend" text="React.js, JavaScript, Tailwind CSS" delay={0} />
-            <AnimatedSkill icon={<Database size={32} />} title="Backend" text="Node.js, Express.js" delay={0.2} />
+            <AnimatedSkill icon={<Code2 size={32} />} title="Frontend" text="React.js, JavaScript, Tailwind CSS, Next.js" delay={0} />
+            <AnimatedSkill icon={<Database size={32} />} title="Backend" text="Node.js, Express.js, Spring Boot" delay={0.2} />
             <AnimatedSkill icon={<Globe size={32} />} title="Database" text="MongoDB, Redis" delay={0.4} />
-            <AnimatedSkill icon={<Cpu size={32} />} title="Tools" text="Git, Linux, VS Code" delay={0.6} />
+            <AnimatedSkill icon={<Cpu size={32} />} title="Tools" text="Git, Linux, VS Code, Eclipse, Postman" delay={0.6} />
           </div>
         </div>
       </Section>
 
       {/* Experience Section */}
-      <Section className="bg-gray-50">
-        <h2 className="text-4xl font-bold text-center mb-12">Experience</h2>
+      <Section className="bg-gray-900">
+        <h2 className="text-4xl font-bold text-center mb-12 text-gray-100">Experience</h2>
         <div className="max-w-4xl mx-auto">
           <AnimatedExperienceCard
             title="Freelance Software Developer"
@@ -151,8 +153,8 @@ function App() {
       </Section>
 
       {/* Education Section */}
-      <Section>
-        <h2 className="text-4xl font-bold text-center mb-12">Education</h2>
+      <Section className="bg-gray-900">
+        <h2 className="text-4xl font-bold text-center mb-12 text-gray-100">Education</h2>
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
           <AnimatedEducationCard
             degree="Master of Computer Applications (MCA)"
@@ -174,55 +176,55 @@ function App() {
       </Section>
 
       {/* Projects Section */}
-      <Section className="bg-gray-50">
-  <h2 className="text-4xl font-bold text-center mb-12">Featured Projects</h2>
-  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <AnimatedProjectCard
-      title="JUSTBuy E-commerce"
-      description="A full-stack e-commerce web application with a user-friendly interface, secure payment gateways, and real-time product search functionality."
-      image="https://res.cloudinary.com/dan0iboqp/image/upload/v1739962271/justbuy_ouakh3.png"
-      delay={0}
-      githubLink="https://github.com/Ujwal-Gaonkar/MERN_ECOMMERCE_PROJECT"
-      liveDemoLink="https://justbuyco.netlify.app/"
-    />
-    <AnimatedProjectCard
-      title="LRU Cache Implementation"
-      description="Implemented an LRU cache using a doubly linked list and a hashmap in C++. The cache has O(1) time complexity for both get and put operations."
-      image="https://res.cloudinary.com/dan0iboqp/image/upload/v1739972596/Screenshot_2025-02-19_at_7.12.22_PM_bstpqd.png"
-      delay={0.2}
-      githubLink="https://github.com/Ujwal-Gaonkar/LRU-Cache"
-      liveDemoLink="https://lru-cache-one.vercel.app/"
-    />
-    <AnimatedProjectCard
-      title="Skill-Sync (LMS)"
-      description="A robust LMS website with secure authentication, enabling users to enroll in courses, purchase content, and access a personalized dashboard."
-      image="https://res.cloudinary.com/dan0iboqp/image/upload/v1739965204/lms_glhfxl.png"
-      delay={0.4}
-      githubLink="https://github.com/Ujwal-Gaonkar/"
-      liveDemoLink="https://skill-sync-lms.vercel.app/"
-    />
-    <AnimatedProjectCard
-      title="SplitEx - Expense Manager"
-      description="Optimized cash flow algorithm using graph theory, Reduced the number of transactions by 35%, improving the efficiency of group expense management."
-      image="https://res.cloudinary.com/dan0iboqp/image/upload/v1739976462/Screenshot_2025-02-19_at_8.13.03_PM_maonno.png"
-      delay={0.4}
-      githubLink="https://github.com/Ujwal-Gaonkar/SplitEx/tree/main"
-      liveDemoLink="https://split-ex.vercel.app/"
-    />
-    <AnimatedProjectCard
-      title="Eksipnos Education Website"
-      description="Led end-to-end development of a full-stack web application for Eksipnos Education.Built a user-centric platform with dynamic content and custom UI components."
-      image="https://res.cloudinary.com/dan0iboqp/image/upload/v1739965204/eksipnos_fu4mmv.png"
-      delay={0.4}
-      githubLink="https://github.com/Ujwal-Gaonkar/EKSIPNOS_EDU"
-      liveDemoLink="https://eksipnos.vercel.app/"
-    />
-  </div>
-</Section>
+      <Section className="bg-gray-900">
+        <h2 className="text-4xl font-bold text-center mb-12 text-gray-100">Featured Projects</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <AnimatedProjectCard
+            title="JUSTBuy E-commerce"
+            description="A full-stack e-commerce web application with a user-friendly interface, secure payment gateways, and real-time product search functionality."
+            image="https://res.cloudinary.com/dan0iboqp/image/upload/v1739962271/justbuy_ouakh3.png"
+            delay={0}
+            githubLink="https://github.com/Ujwal-Gaonkar/MERN_ECOMMERCE_PROJECT"
+            liveDemoLink="https://justbuyco.netlify.app/"
+          />
+          <AnimatedProjectCard
+            title="LRU Cache Implementation"
+            description="Implemented an LRU cache using a doubly linked list and a hashmap in C++. The cache has O(1) time complexity for both get and put operations."
+            image="https://res.cloudinary.com/dan0iboqp/image/upload/v1739972596/Screenshot_2025-02-19_at_7.12.22_PM_bstpqd.png"
+            delay={0.2}
+            githubLink="https://github.com/Ujwal-Gaonkar/LRU-Cache"
+            liveDemoLink="https://lru-cache-one.vercel.app/"
+          />
+          <AnimatedProjectCard
+            title="Skill-Sync (LMS)"
+            description="A robust LMS website with secure authentication, enabling users to enroll in courses, purchase content, and access a personalized dashboard."
+            image="https://res.cloudinary.com/dan0iboqp/image/upload/v1739965204/lms_glhfxl.png"
+            delay={0.4}
+            githubLink="https://github.com/Ujwal-Gaonkar/"
+            liveDemoLink="https://skill-sync-lms.vercel.app/"
+          />
+          <AnimatedProjectCard
+            title="SplitEx - Expense Manager"
+            description="Optimized cash flow algorithm using graph theory, Reduced the number of transactions by 35%, improving the efficiency of group expense management."
+            image="https://res.cloudinary.com/dan0iboqp/image/upload/v1739976462/Screenshot_2025-02-19_at_8.13.03_PM_maonno.png"
+            delay={0.6}
+            githubLink="https://github.com/Ujwal-Gaonkar/SplitEx/tree/main"
+            liveDemoLink="https://split-ex.vercel.app/"
+          />
+          <AnimatedProjectCard
+            title="Eksipnos Education Website"
+            description="Led end-to-end development of a full-stack web application for Eksipnos Education. Built a user-centric platform with dynamic content and custom UI components."
+            image="https://res.cloudinary.com/dan0iboqp/image/upload/v1739965204/eksipnos_fu4mmv.png"
+            delay={0.8}
+            githubLink="https://github.com/Ujwal-Gaonkar/EKSIPNOS_EDU"
+            liveDemoLink="https://eksipnos.vercel.app/"
+          />
+        </div>
+      </Section>
 
       {/* Certifications Section */}
-      <Section>
-        <h2 className="text-4xl font-bold text-center mb-12">Certifications</h2>
+      <Section className="bg-gray-900">
+        <h2 className="text-4xl font-bold text-center mb-12 text-gray-100">Certifications</h2>
         <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-8">
           <AnimatedCertificationCard
             title="Cutshort DSA"
@@ -247,12 +249,12 @@ function App() {
       </Section>
 
       {/* Contact Section */}
-      <Section className="bg-gray-50">
-        <h2 className="text-4xl font-bold text-center mb-12">Get in Touch</h2>
+      <Section className="bg-gray-900">
+        <h2 className="text-4xl font-bold text-center mb-12 text-gray-100">Get in Touch</h2>
         <div className="max-w-lg mx-auto">
           <div className="flex flex-col space-y-4">
             {[
-              { icon: <Mail size={20} />, text: "gaonkarujwal07@gmail.com", href: "mailto:gaonkarujwal07@gmail.com", bgColor: "bg-gray-900 hover:bg-gray-800" },
+              { icon: <Mail size={20} />, text: "gaonkarujwal07@gmail.com", href: "mailto:gaonkarujwal07@gmail.com", bgColor: "bg-gray-800 hover:bg-gray-700" },
               { icon: <PhoneCall size={20} />, text: "+91-8660568591", href: "tel:+918660568591", bgColor: "bg-blue-600 hover:bg-blue-700" }
             ].map((item, index) => (
               <motion.a
@@ -339,12 +341,12 @@ function AnimatedSkill({ icon, title, text, delay }: { icon: React.ReactNode; ti
       <motion.div
         whileHover={{ rotate: 360 }}
         transition={{ duration: 0.6 }}
-        className="inline-block p-3 bg-gray-100 rounded-lg mb-4"
+        className="inline-block p-3 bg-gray-800 rounded-lg mb-4 text-blue-400"
       >
         {icon}
       </motion.div>
-      <h3 className="font-semibold mb-2">{title}</h3>
-      <p className="text-sm text-gray-600">{text}</p>
+      <h3 className="font-semibold mb-2 text-gray-200">{title}</h3>
+      <p className="text-sm text-gray-400">{text}</p>
     </motion.div>
   );
 }
@@ -371,8 +373,7 @@ function AnimatedProjectCard({
       viewport={{ once: true }}
       transition={{ delay, duration: 0.5 }}
       whileHover={{ y: -8 }}
-      className="bg-white rounded-lg shadow-lg overflow-hidden"
-    >
+      className="bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-700">
       <motion.img
         whileHover={{ scale: 1.05 }}
         transition={{ duration: 0.3 }}
@@ -381,15 +382,15 @@ function AnimatedProjectCard({
         className="w-full h-48 object-cover"
       />
       <div className="p-6">
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
-        <p className="text-gray-600 mb-4">{description}</p>
+      <h3 className="text-xl font-semibold mb-2 text-gray-100">{title}</h3>
+        <p className="text-gray-400 mb-4">{description}</p>
         <div className="flex space-x-4">
           {githubLink && (
             <motion.a
               href={githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center text-gray-800 hover:text-gray-700 bg-gray-200 py-2 px-4 rounded"
+             className="inline-flex items-center text-blue-400 hover:text-blue-300"
               whileHover={{ x: 5 }}
               transition={{ duration: 0.2 }}
             >
@@ -401,7 +402,7 @@ function AnimatedProjectCard({
               href={liveDemoLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center text-blue-600 hover:text-blue-700 bg-blue-200 py-2 px-4 rounded"
+              className="inline-flex items-center text-green-400 hover:text-green-300"
               whileHover={{ x: 5 }}
               transition={{ duration: 0.2 }}
             >
@@ -422,14 +423,14 @@ function AnimatedExperienceCard({ title, period, location, description, delay }:
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay, duration: 0.5 }}
-      className="bg-white p-8 rounded-lg shadow-md"
+      className="bg-gray-800 p-8 rounded-lg shadow-md border border-gray-700"
     >
       <div className="flex items-start justify-between mb-4">
         <div>
-          <h3 className="text-xl font-semibold text-gray-900">{title}</h3>
-          <p className="text-gray-600">{location}</p>
+          <h3 className="text-xl font-semibold text-gray-100">{title}</h3>
+          <p className="text-gray-400">{location}</p>
         </div>
-        <span className="text-gray-500">{period}</span>
+        <span className="text-gray-400">{period}</span>
       </div>
       <ul className="space-y-2">
         {description.map((item, index) => (
@@ -439,9 +440,9 @@ function AnimatedExperienceCard({ title, period, location, description, delay }:
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: delay + 0.1 * index, duration: 0.5 }}
-            className="flex items-start"
+            className="flex items-start text-gray-300"
           >
-            <span className="text-blue-600 mr-2">•</span>
+            <span className="text-blue-400 mr-2">•</span>
             {item}
           </motion.li>
         ))}
@@ -457,21 +458,21 @@ function AnimatedEducationCard({ degree, school, period, score, location, delay 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay, duration: 0.5 }}
-      className="bg-white p-6 rounded-lg shadow-md"
+      className="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700"
     >
       <div className="flex items-center mb-4">
-        <div className="p-2 bg-blue-100 rounded-lg mr-4">
-          <GraduationCap size={24} className="text-blue-600" />
+        <div className="p-2 bg-gray-700 rounded-lg mr-4">
+          <GraduationCap size={24} className="text-blue-400" />
         </div>
         <div>
-          <h3 className="text-lg font-semibold text-gray-900">{degree}</h3>
-          <p className="text-gray-600">{school}</p>
+          <h3 className="text-lg font-semibold text-gray-100">{degree}</h3>
+          <p className="text-gray-400">{school}</p>
         </div>
       </div>
       <div className="ml-14">
-        <p className="text-gray-500">{period}</p>
-        <p className="text-gray-500">{location}</p>
-        <p className="text-blue-600 font-medium mt-2">{score}</p>
+        <p className="text-gray-400">{period}</p>
+        <p className="text-gray-400">{location}</p>
+        <p className="text-blue-400 font-medium mt-2">{score}</p>
       </div>
     </motion.div>
   );
@@ -485,18 +486,18 @@ function AnimatedCertificationCard({ title, issuer, description, icon, delay }: 
       viewport={{ once: true }}
       transition={{ delay, duration: 0.5 }}
       whileHover={{ scale: 1.03 }}
-      className="bg-white p-6 rounded-lg shadow-md text-center"
+      className="bg-gray-800 p-6 rounded-lg shadow-md text-center border border-gray-700"
     >
       <motion.div
         whileHover={{ rotate: 360 }}
         transition={{ duration: 0.6 }}
-        className="inline-block p-3 bg-blue-100 rounded-full mb-4"
+        className="inline-block p-3 bg-gray-700 rounded-full mb-4"
       >
-        <div className="text-blue-600">{icon}</div>
+        <div className="text-blue-400">{icon}</div>
       </motion.div>
-      <h3 className="text-lg font-semibold mb-2">{title}</h3>
-      <p className="text-gray-600">{issuer}</p>
-      {description && <p className="text-blue-600 mt-2">{description}</p>}
+      <h3 className="text-lg font-semibold mb-2 text-gray-100">{title}</h3>
+      <p className="text-gray-400">{issuer}</p>
+      {description && <p className="text-blue-400 mt-2">{description}</p>}
     </motion.div>
   );
 }
