@@ -40,15 +40,20 @@ function App() {
           transition={{ duration: 0.8 }}
           className="container mx-auto px-6 py-24 text-center relative z-10"
         >
-        <motion.h1
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          whileHover={{ scale: 1.05 }}
-          className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 inline-flex overflow-visible filter drop-shadow-md"
-        >
-          Ujwal Gaonkar
-        </motion.h1>
+       <motion.h1
+        initial={{ scale: 0.8 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="text-5xl md:text-7xl font-bold mb-6 leading-[1.2] text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600"
+        style={{
+          letterSpacing: '1px',
+          wordSpacing: '2px',
+          lineHeight: '1.3',
+          textRendering: 'optimizeLegibility'
+        }}
+      >
+        Ujwal Gaonkar
+      </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
