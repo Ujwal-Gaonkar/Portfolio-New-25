@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Github, Linkedin, Mail, ExternalLink, Code2,Code,FileStackIcon, Database, Globe, Cpu, ChevronRight as ChessKnight, Brain, Download, Instagram, GraduationCap, PhoneCall } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 function App() {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (typeof window !== "undefined" && (window as any).gtag) {
+        (window as any).gtag("event", "time_on_site_30s", {
+          event_category: "Engagement",
+          event_label: "User stayed for 30 seconds",
+          value: 30,
+        });
+      }
+    }, 30000); // 30,000 ms = 30 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <div className={`min-h-screen dark bg-gray-900`}>
       {/* Navigation Bar with Resume Download */}
@@ -269,21 +282,42 @@ function App() {
         <h2 className="text-4xl font-bold text-center mb-12 text-gray-100">Get in Touch</h2>
         <div className="max-w-lg mx-auto">
           <div className="flex flex-col space-y-4">
-            {[
-              { icon: <Mail size={20} />, text: "gaonkarujwal07@gmail.com", href: "mailto:gaonkarujwal07@gmail.com", bgColor: "bg-gray-800 hover:bg-gray-700" },
-              { icon: <PhoneCall size={20} />, text: "+91-8660568591", href: "tel:+918660568591", bgColor: "bg-blue-600 hover:bg-blue-700" }
-            ].map((item, index) => (
-              <motion.a
-                key={index}
-                href={item.href}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`flex items-center justify-center space-x-3 px-6 py-3 ${item.bgColor} text-white rounded-lg transition-colors`}
-              >
-                {item.icon}
-                <span>{item.text}</span>
-              </motion.a>
-            ))}
+           {[
+            {
+              icon: <Mail size={20} />,
+              text: "gaonkarujwal07@gmail.com",
+              href: "mailto:gaonkarujwal07@gmail.com",
+              bgColor: "bg-gray-800 hover:bg-gray-700",
+              label: "Email"
+            },
+            {
+              icon: <PhoneCall size={20} />,
+              text: "+91-8660568591",
+              href: "tel:+918660568591",
+              bgColor: "bg-blue-600 hover:bg-blue-700",
+              label: "Phone"
+            }
+          ].map((item, index) => (
+            <motion.a
+              key={index}
+              href={item.href}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className={`flex items-center justify-center space-x-3 px-6 py-3 ${item.bgColor} text-white rounded-lg transition-colors`}
+              onClick={() => {
+                if (typeof window !== "undefined" && (window as any).gtag) {
+                  (window as any).gtag("event", "contact_click", {
+                    event_category: "recruiter",
+                    event_label: item.label,
+                    value: 1,
+                  });
+                }
+              }}
+            >
+              {item.icon}
+              <span>{item.text}</span>
+            </motion.a>
+          ))}
           </div>
         </div>
       </Section>
@@ -406,25 +440,41 @@ function AnimatedProjectCard({
               href={githubLink}
               target="_blank"
               rel="noopener noreferrer"
-             className="inline-flex items-center text-blue-400 hover:text-blue-300"
+              className="inline-flex items-center text-blue-400 hover:text-blue-300"
               whileHover={{ x: 5 }}
               transition={{ duration: 0.2 }}
+              onClick={() => {
+                if (typeof window !== "undefined" && (window as any).gtag) {
+                  (window as any).gtag("event", "project_click", {
+                    event_category: "projects",
+                    event_label: `${title} GitHub`,
+                  });
+                }
+              }}
             >
               GitHub <ExternalLink size={16} className="ml-1" />
             </motion.a>
           )}
-          {liveDemoLink && (
-            <motion.a
-              href={liveDemoLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center text-green-400 hover:text-green-300"
-              whileHover={{ x: 5 }}
-              transition={{ duration: 0.2 }}
-            >
-              Live Demo <ExternalLink size={16} className="ml-1" />
-            </motion.a>
-          )}
+         {liveDemoLink && (
+          <motion.a
+            href={liveDemoLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-green-400 hover:text-green-300"
+            whileHover={{ x: 5 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => {
+              if (typeof window !== "undefined" && (window as any).gtag) {
+                (window as any).gtag("event", "project_click", {
+                  event_category: "projects",
+                  event_label: `${title} Live Demo`,
+                });
+              }
+            }}
+          >
+            Live Demo <ExternalLink size={16} className="ml-1" />
+          </motion.a>
+        )}
         </div>
       </div>
     </motion.div>
