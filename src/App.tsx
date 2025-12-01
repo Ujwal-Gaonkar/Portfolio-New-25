@@ -18,15 +18,25 @@ function App() {
             </motion.h1>
             <div className="flex items-center gap-4">
               <motion.a
-              href="https://drive.google.com/file/d/1I0bHftwVVOrQDW1k9wM5eE6u3pD6rzml/view?usp=sharing"
-              download
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors`}
-            >
-              <Download size={18} />
-              Download Resume
-            </motion.a>
+            href="https://drive.google.com/file/d/1I0bHftwVVOrQDW1k9wM5eE6u3pD6rzml/view?usp=sharing"
+            download
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+            onClick={() => {
+              // Safely call gtag if it exists
+              if (typeof window !== "undefined" && (window as any).gtag) {
+                (window as any).gtag("event", "resume_click", {
+                  event_category: "engagement",
+                  event_label: "Hero Resume Button",
+                  value: 1,
+                });
+              }
+            }}
+          >
+            <Download size={18} />
+            Download Resume
+          </motion.a>
           </div>
         </div>
       </div>
