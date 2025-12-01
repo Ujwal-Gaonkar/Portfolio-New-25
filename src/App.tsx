@@ -55,7 +55,7 @@ function App() {
       </div>
     </nav>
 
-      {/* Hero Section with Parallax Effect */}
+     {/* Hero Section with Parallax Effect */}
       <header className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 text-white relative overflow-hidden pt-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -63,28 +63,65 @@ function App() {
           transition={{ duration: 0.8 }}
           className="container mx-auto px-6 py-24 text-center relative z-10"
         >
-       <motion.h1
-        initial={{ scale: 0.8 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="text-5xl md:text-7xl font-bold mb-6 leading-[1.2] text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600"
-        style={{
-          letterSpacing: '1px',
-          wordSpacing: '2px',
-          lineHeight: '1.3',
-          textRendering: 'optimizeLegibility'
-        }}
-      >
-        Ujwal Gaonkar
-      </motion.h1>
+          {/* ⭐ Avatar with rotating golden ring (Mobile-Friendly) */}
+          <div className="flex justify-center mb-6 md:mb-8">
+            <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40">
+              {/* Rotating golden light ring */}
+              <motion.div
+                className="absolute inset-0 rounded-full"
+                style={{
+                  backgroundImage:
+                    "conic-gradient(from 0deg, rgba(250,204,21,0.05), rgba(250,204,21,0.9), rgba(250,204,21,0.05))",
+                  boxShadow:
+                    "0 0 18px rgba(250,204,21,0.5), 0 0 32px rgba(250,204,21,0.35)",
+                }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+              />
+
+              {/* Soft golden glow (subtle on mobile) */}
+              <div className="absolute -inset-3 sm:-inset-4 rounded-full bg-yellow-400/15 blur-2xl" />
+
+              {/* Dark circle to form ring shape */}
+              <div className="absolute inset-2 sm:inset-3 rounded-full bg-gray-900" />
+
+              {/* Actual profile image */}
+              <div className="absolute inset-3 sm:inset-4 rounded-full overflow-hidden bg-gray-900 flex items-center justify-center">
+                <img
+                  src="/ujwal-profile.jpg"  // ⚠️ Make sure this is saved inside /public/
+                  alt="Ujwal Gaonkar"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Name & Title */}
+          <motion.h1
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-[1.2] text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600"
+            style={{
+              letterSpacing: "1px",
+              wordSpacing: "2px",
+              lineHeight: "1.3",
+              textRendering: "optimizeLegibility",
+            }}
+          >
+            Ujwal Gaonkar
+          </motion.h1>
+
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
-            className="text-xl md:text-2xl text-gray-300 mb-12"
+            className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-10"
           >
             Software Developer
           </motion.p>
+
+          {/* Social Icons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -94,7 +131,7 @@ function App() {
             {[
               { icon: <Github size={24} />, href: "https://github.com/Ujwal-Gaonkar", label: "GitHub" },
               { icon: <Linkedin size={24} />, href: "https://www.linkedin.com/in/ujwal-gaonkar-6746aa1a7/", label: "LinkedIn" },
-              { icon: <Mail size={24} />, href: "mailto:gaonkarujwal07@gmail.com", label: "Email" }
+              { icon: <Mail size={24} />, href: "mailto:gaonkarujwal07@gmail.com", label: "Email" },
             ].map((item, index) => (
               <motion.a
                 key={index}
@@ -109,18 +146,18 @@ function App() {
             ))}
           </motion.div>
         </motion.div>
-        
-        {/* Animated background elements */}
+
+        {/* Animated Background Elements (kept same) */}
         <div className="absolute inset-0 overflow-hidden">
           {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute bg-white/5 rounded-full"
               style={{
-                width: Math.random() * 100 + 50,
-                height: Math.random() * 100 + 50,
-                left: Math.random() * 100 + '%',
-                top: Math.random() * 100 + '%',
+                width: Math.random() * 80 + 40,
+                height: Math.random() * 80 + 40,
+                left: Math.random() * 100 + "%",
+                top: Math.random() * 100 + "%",
               }}
               animate={{
                 y: [0, Math.random() * 100 - 50],
@@ -161,25 +198,42 @@ function App() {
         </div>
       </Section>
 
-      {/* Experience Section */}
-      <Section className="bg-gray-900">
-        <h2 className="text-4xl font-bold text-center mb-12 text-gray-100">Experience</h2>
-        <div className="max-w-4xl mx-auto">
-          <AnimatedExperienceCard
-            title="Freelance Software Developer"
-            period="2023 - Present"
-            location="Remote"
-            description={[
-              "Developed a MERN Stack e-commerce website with Stripe API integration",
-              "Designed and deployed a Learning Management System (LMS) with secure authentication",
-              "Built Eksipnos Education Consultancy Website with dynamic content management",
-              "Enhanced user engagement by 30% through optimized features",
-              "Reduced API response time by 40% using Redis caching"
-            ]}
-            delay={0}
-          />
-        </div>
-      </Section>
+     {/* Experience Section */}
+        <Section className="bg-gray-900">
+          <h2 className="text-4xl font-bold text-center mb-12 text-gray-100">
+            Experience
+          </h2>
+
+          <div className="max-w-4xl mx-auto space-y-8">
+            <AnimatedExperienceCard
+              title="Freelance Software Developer"
+              period="Aug 2024 – Present"
+              location="Remote"
+              description={[
+                "Architected and developed a full-stack Learning Management System (LMS) using the MERN stack with secure JWT-based authentication and real-time progress tracking for 100+ users.",
+                "Built the Eksipnos Education Consultancy website with dynamic content management, improving user engagement by 30% through better UX and real-time updates.",
+                "Developed a production-ready MERN e-commerce platform with Stripe integration for secure online payments and real-time inventory management.",
+                "Optimized backend performance by introducing Redis caching, reducing API response times by up to 40% and improving overall system responsiveness.",
+                "Collaborated closely with non-technical stakeholders to gather requirements, propose technical solutions, and deliver features on time."
+              ]}
+              delay={0}
+            />
+
+            <AnimatedExperienceCard
+              title="Software Development Engineer Intern"
+              period="May 2024 – Jul 2024"
+              location="Celestial V Solutions · Bengaluru"
+              description={[
+                "Developed and optimized scalable web application features using the MERN stack, focusing on performance, code quality, and maintainability.",
+                "Integrated RESTful APIs and worked on both frontend and backend modules to ensure consistent and reliable data flow across the platform.",
+                "Improved UI/UX consistency by refining reusable components and standardizing styling across multiple pages.",
+                "Collaborated with senior engineers in code reviews, debugging sessions, and sprint planning to align with business requirements.",
+                "Worked in an Agile environment, delivering features in short iterations and actively participating in daily stand-ups."
+              ]}
+              delay={0.2}
+            />
+          </div>
+        </Section>
 
       {/* Education Section */}
       <Section className="bg-gray-900">
@@ -191,14 +245,16 @@ function App() {
             period="2022 - 2024"
             score="CGPA: 9.3"
             location="Bengaluru"
+            logo="/college/dsce.png"   // <-- NEW LINE
             delay={0}
           />
           <AnimatedEducationCard
             degree="Bachelor of Computer Applications (BCA)"
-            school="Karnataka University, Dharwad(KUD)"
+            school="Karnataka University, Dharwad (KUD)"
             period="2019 - 2022"
             score="Percentage: 89.56%"
             location="Karwar"
+            logo="/college/kud.png"     // <-- NEW LINE
             delay={0.2}
           />
         </div>
@@ -217,28 +273,12 @@ function App() {
             liveDemoLink="https://justbuyco.netlify.app/"
           />
           <AnimatedProjectCard
-            title="LRU Cache Implementation"
-            description="Implemented an LRU cache using a doubly linked list and a hashmap in C++. The cache has O(1) time complexity for both get and put operations."
-            image="https://res.cloudinary.com/dan0iboqp/image/upload/v1739972596/Screenshot_2025-02-19_at_7.12.22_PM_bstpqd.png"
-            delay={0.2}
-            githubLink="https://github.com/Ujwal-Gaonkar/LRU-Cache"
-            liveDemoLink="https://lru-cache-one.vercel.app/"
-          />
-          <AnimatedProjectCard
             title="Skill-Sync (LMS)"
             description="A robust LMS website with secure authentication, enabling users to enroll in courses, purchase content, and access a personalized dashboard."
             image="https://res.cloudinary.com/dan0iboqp/image/upload/v1739965204/lms_glhfxl.png"
             delay={0.4}
             githubLink="https://github.com/Ujwal-Gaonkar/"
             liveDemoLink="https://skill-sync-lms.vercel.app/"
-          />
-          <AnimatedProjectCard
-            title="SplitEx - Expense Manager"
-            description="Optimized cash flow algorithm using graph theory, Reduced the number of transactions by 35%, improving the efficiency of group expense management."
-            image="https://res.cloudinary.com/dan0iboqp/image/upload/v1739976462/Screenshot_2025-02-19_at_8.13.03_PM_maonno.png"
-            delay={0.6}
-            githubLink="https://github.com/Ujwal-Gaonkar/SplitEx/tree/main"
-            liveDemoLink="https://split-ex.vercel.app/"
           />
           <AnimatedProjectCard
             title="Eksipnos Education Website"
@@ -248,6 +288,24 @@ function App() {
             githubLink="https://github.com/Ujwal-Gaonkar/EKSIPNOS_EDU"
             liveDemoLink="https://eksipnos.vercel.app/"
           />
+          <AnimatedProjectCard
+            title="LRU Cache Implementation"
+            description="Implemented an LRU cache using a doubly linked list and a hashmap in C++. The cache has O(1) time complexity for both get and put operations."
+            image="https://res.cloudinary.com/dan0iboqp/image/upload/v1739972596/Screenshot_2025-02-19_at_7.12.22_PM_bstpqd.png"
+            delay={0.2}
+            githubLink="https://github.com/Ujwal-Gaonkar/LRU-Cache"
+            liveDemoLink="https://lru-cache-one.vercel.app/"
+          />
+          
+          <AnimatedProjectCard
+            title="SplitEx - Expense Manager"
+            description="Optimized cash flow algorithm using graph theory, Reduced the number of transactions by 35%, improving the efficiency of group expense management."
+            image="https://res.cloudinary.com/dan0iboqp/image/upload/v1739976462/Screenshot_2025-02-19_at_8.13.03_PM_maonno.png"
+            delay={0.6}
+            githubLink="https://github.com/Ujwal-Gaonkar/SplitEx/tree/main"
+            liveDemoLink="https://split-ex.vercel.app/"
+          />
+          
         </div>
       </Section>
 
@@ -259,19 +317,22 @@ function App() {
             title="Cutshort DSA"
             issuer="Cutshort"
             icon={<Brain size={32} />}
+            link="https://cutshort.io/certificate/108851"        // 🔗 ADD LINK
             delay={0}
           />
           <AnimatedCertificationCard
             title="GitHub Professional"
             issuer="GitHub"
             icon={<Github size={32} />}
+            link="https://www.linkedin.com/learning/certificates/dace87dc1a513a1c9db72681e58acb292e8ca580781e6a5a3618d1d4fee9430b"          // 🔗 ADD LINK
             delay={0.2}
           />
           <AnimatedCertificationCard
-            title="Chess.com Rating"
+            title="Chess.com Rating- 1674"
             issuer="Chess.com"
-            description="1674 Rating"
+            //description="Rating"
             icon={<ChessKnight size={32} />}
+            link="https://www.chess.com/member/ujwalgaonkar/stats/rapid"  // 🔗 ADD LINK
             delay={0.4}
           />
         </div>
@@ -517,7 +578,23 @@ function AnimatedExperienceCard({ title, period, location, description, delay }:
   );
 }
 
-function AnimatedEducationCard({ degree, school, period, score, location, delay }: { degree: string; school: string; period: string; score: string; location: string; delay: number }) {
+function AnimatedEducationCard({
+  degree,
+  school,
+  period,
+  score,
+  location,
+  delay,
+  logo,   // NEW prop added
+}: {
+  degree: string;
+  school: string;
+  period: string;
+  score: string;
+  location: string;
+  delay: number;
+  logo?: string; // NEW (optional)
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -527,14 +604,26 @@ function AnimatedEducationCard({ degree, school, period, score, location, delay 
       className="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700"
     >
       <div className="flex items-center mb-4">
-        <div className="p-2 bg-gray-700 rounded-lg mr-4">
-          <GraduationCap size={24} className="text-blue-400" />
-        </div>
+        
+        {/* If logo exists → show logo, else show GraduationCap */}
+        {logo ? (
+          <img
+            src={logo}
+            alt="College Logo"
+            className="w-12 h-12 object-contain rounded-md mr-4 hover:scale-110 transition duration-300"
+          />
+        ) : (
+          <div className="p-2 bg-gray-700 rounded-lg mr-4">
+            <GraduationCap size={24} className="text-blue-400" />
+          </div>
+        )}
+
         <div>
           <h3 className="text-lg font-semibold text-gray-100">{degree}</h3>
           <p className="text-gray-400">{school}</p>
         </div>
       </div>
+
       <div className="ml-14">
         <p className="text-gray-400">{period}</p>
         <p className="text-gray-400">{location}</p>
@@ -544,7 +633,21 @@ function AnimatedEducationCard({ degree, school, period, score, location, delay 
   );
 }
 
-function AnimatedCertificationCard({ title, issuer, description, icon, delay }: { title: string; issuer: string; description?: string; icon: React.ReactNode; delay: number }) {
+function AnimatedCertificationCard({
+  title,
+  issuer,
+  description,
+  icon,
+  delay,
+  link, // NEW 👈
+}: {
+  title: string;
+  issuer: string;
+  description?: string;
+  icon: React.ReactNode;
+  delay: number;
+  link?: string;  // NEW 👈 optional
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -554,6 +657,7 @@ function AnimatedCertificationCard({ title, issuer, description, icon, delay }: 
       whileHover={{ scale: 1.03 }}
       className="bg-gray-800 p-6 rounded-lg shadow-md text-center border border-gray-700"
     >
+      {/* Icon */}
       <motion.div
         whileHover={{ rotate: 360 }}
         transition={{ duration: 0.6 }}
@@ -561,9 +665,23 @@ function AnimatedCertificationCard({ title, issuer, description, icon, delay }: 
       >
         <div className="text-blue-400">{icon}</div>
       </motion.div>
+
+      {/* Content */}
       <h3 className="text-lg font-semibold mb-2 text-gray-100">{title}</h3>
       <p className="text-gray-400">{issuer}</p>
       {description && <p className="text-blue-400 mt-2">{description}</p>}
+
+      {/* 🔗 Link Button (only if link provided) */}
+      {link && (
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block mt-3 bg-blue-600 text-white px-4 py-1 rounded-full text-sm hover:bg-blue-500 transition"
+        >
+          View Certificate →
+        </a>
+      )}
     </motion.div>
   );
 }
